@@ -33,7 +33,7 @@ local function main()
     -- generate raw output by sampling (the output without UNK replacement and NER recovery)
     local sampler = EncDecASampler(opts.modelPath, opts.lmPath, opts.lmWeight, opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
     -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
-    --    sampler:generateBatch(opts.dataPath, opts.outPathRaw)
+    sampler:generateBatch(opts.dataPath, opts.outPath)
 
     --    local att_file = opts.outPathRaw .. '.att.t7'
     --    local unk_rep_file = opts.outPathRaw .. '.unk.rep.txt'
