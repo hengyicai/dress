@@ -6,17 +6,14 @@ require 'post_processing_unk'
 local function main()
     local cmd = torch.CmdLine()
     cmd:text('Options for generate raw output:')
-    cmd:option('--modelPath',
-        '/disk/scratch/XingxingZhang/encdec/sent_simple/encdec_attention_PWKP_margin_prob/model_0.001.256.dot.2L.adam.reload.sgd.m0.97.t7',
-        'model path')
+    cmd:option('--modelPath', '', 'model path')
+    cmd:option('--modelStatePath', '', 'model State path')
     cmd:option('--lmPath', '', 'language model path')
     cmd:option('--lmWeight', 0.5, 'language model weight during decoding')
     cmd:option('--lexTransPath', '', 'lex translation path')
     cmd:option('--lexTransWeight', 0.2, 'lex translation weight')
     cmd:option('--lexSelfDiscount', 0.5, 'discount for self translation')
-    cmd:option('--dataPath',
-        '/afs/inf.ed.ac.uk/group/project/img2txt/encdec/dataset/PWKP/an_ner/PWKP_108016.tag.80.aner.valid',
-        'data path. Note that it should be the path before .src and .dst')
+    cmd:option('--dataPath', '', 'input data path')
     cmd:option('--outPath', '', 'output path')
     --    cmd:option('--outPathRaw',
     --        '/disk/scratch/XingxingZhang/encdec/sent_simple/encdec_attention_PWKP_margin_prob/sampleA/model_0.001.256.dot.2L.adam.reload.sgd.m0.97.valid',
@@ -31,7 +28,8 @@ local function main()
     local opts = cmd:parse(arg)
 
     -- generate raw output by sampling (the output without UNK replacement and NER recovery)
-    local sampler = EncDecASampler(opts.modelPath, opts.lmPath, opts.lmWeight, opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
+    local sampler = EncDecASampler(opts.modelPath, opts.modelStatePath, opts.lmPath, opts.lmWeight,
+        opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
     -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
     sampler:generateBatch(opts.dataPath, opts.outPath)
 
