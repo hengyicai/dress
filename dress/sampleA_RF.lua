@@ -228,6 +228,7 @@ function XSampler:generate_att(src_sent)
     local x_mask_sub = self:transData(torch.zeros(1, Tx))
     -- self.dec_hs_hat[t-1], all_enc_hs, x_mask_t, x_mask_sub
     local prev_word = self.opts.dst_vocab.EOS
+    printf(self.opts)
     -- printf('first target word is %d : %s\n', prev_word, self.opts.dst_vocab.idx2word[prev_word] )
     local attention_scores = {}
     local out_sent = {}
