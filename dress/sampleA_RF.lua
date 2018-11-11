@@ -237,6 +237,7 @@ function XSampler:generate_att(src_sent)
         -- move one step
         local x_t = self:transData(torch.Tensor({ prev_word }))
 
+        printf(x_t)
         local nx_s, predict, nx_h_hat = unpack(self.encdec.dec_lstm_master:forward({
             x_t, self.s,
             self.h_hat, all_enc_hs, x_mask_t, x_mask_sub
