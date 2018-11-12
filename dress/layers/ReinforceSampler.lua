@@ -30,12 +30,13 @@ function ReinforceSampler:updateOutput(input)
         self.prob:copy(input)
         self.prob:exp()
         self.output:resize(input:size(1), 1)
-        self.output = torch.LongTensor():resize(self.output:size()):copy(self.output):cuda()
-        torch.multinomial(self.output, self.prob, 1)
+        --        self.output = torch.LongTensor():resize(self.output:size()):copy(self.output):cuda()
+        --        torch.multinomial(self.output, self.prob, 1)
+        return torch.multinomial(self.prob, 1)
     else
         error('we did not implement sampling from', self.distribution)
     end
-    return self.output -- batch x 1
+    --    return self.output -- batch x 1
 end
 
 -- NOTE: in order for this to work, it has to be connected
