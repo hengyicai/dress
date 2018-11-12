@@ -77,7 +77,7 @@ function XSampler:__init(modelPath, modelStatePath, lmPath, lmWeight, lexTransPa
     self.encdec:load(modelPath)
     print('load model done!')
     self.opts = opts
-
+    xprintln('[ Debug: self.opts is %s ]', self.opts)
     if opts.model == 'EncDecARF_Plus' then
         self.encdec:loadLMScorer(opts.lmPath)
     end
