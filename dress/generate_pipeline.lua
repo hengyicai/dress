@@ -21,9 +21,9 @@ local function main()
     --    cmd:option('--oriDataPath',
     --        '/afs/inf.ed.ac.uk/group/project/img2txt/encdec/dataset/PWKP/an_ner/PWKP_108016.tag.80.aner.ori.valid',
     --        'original data path without ner replacement')
-    --    cmd:option('--oriMapPath',
-    --        '/afs/inf.ed.ac.uk/group/project/img2txt/encdec/dataset/PWKP/an_ner/PWKP_108016.tag.80.aner.map.t7',
-    --        'map between NER and original text')
+    cmd:option('--oriMapPath',
+        '/root/caihengyi/workspace/dress/pre-trained-models/wiki.full.aner.map.t7',
+        'map between NER and original text')
 
     local opts = cmd:parse(arg)
 
@@ -33,14 +33,14 @@ local function main()
     -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
     sampler:generateBatch(opts.dataPath, opts.outPath)
 
-    --    local att_file = opts.outPathRaw .. '.att.t7'
-    --    local unk_rep_file = opts.outPathRaw .. '.unk.rep.txt'
-    --    local ner_src_file = opts.dataPath .. '.src'
-    --    PostProcessorUnk.replaceUnk(ner_src_file, opts.outPathRaw, att_file, unk_rep_file)
-    --
-    --    local out_file = opts.outPathRaw .. '.out.txt'
+    local att_file = opts.outPath .. '.att.t7'
+    local unk_rep_file = opts.outPath .. '.unk.rep.txt'
+    local ner_src_file = opts.dataPath
+    PostProcessorUnk.replaceUnk(ner_src_file, opts.outPath, att_file, unk_rep_file)
+
+    local out_file = opts.outPath .. '.out.txt'
     --    local ref_file = opts.oriDataPath .. '.dst'
-    --    PostProcessorUnk.recoverNER(ner_src_file, unk_rep_file, opts.oriMapPath, out_file)
+    PostProcessorUnk.recoverNER(ner_src_file, unk_rep_file, opts.oriMapPath, out_file)
     --
     --    -- local cmd = string.format('./scripts/multi-bleu.perl %s < %s', ref_file, out_file)
     --    -- os.execute(cmd)
