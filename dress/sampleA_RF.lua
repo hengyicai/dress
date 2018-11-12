@@ -21,6 +21,7 @@ function XSampler:__init(modelPath, modelStatePath, lmPath, lmWeight, lexTransPa
     --    local statePath = modelPath:sub(1, -3) .. 'state.t7'
     local statePath = modelStatePath
     local opts = torch.load(statePath)
+    xprintln('[ Debug: opts is %s ]', opts)
     if opts.useGPU then
         require 'cunn'
         require 'cutorch'
