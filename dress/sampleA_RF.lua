@@ -187,6 +187,7 @@ function XSampler:generate(src_sent)
 end
 
 function XSampler:generate_att(src_sent)
+    xprintln('[ Debug: first line of XSampler:generate_att, self.opts is %s ]', self.opts)
     -- self.encdec.modules_map
     local src_words = src_sent:splitc(' \t\r\n')
 
