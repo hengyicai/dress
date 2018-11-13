@@ -27,11 +27,11 @@ local function main()
 
     local opts = cmd:parse(arg)
 
-    -- generate raw output by sampling (the output without UNK replacement and NER recovery)
-    local sampler = EncDecASampler(opts.modelPath, opts.modelStatePath, opts.lmPath, opts.lmWeight,
-        opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
-    -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
-    sampler:generateBatch(opts.dataPath, opts.outPath)
+    --    -- generate raw output by sampling (the output without UNK replacement and NER recovery)
+    --    local sampler = EncDecASampler(opts.modelPath, opts.modelStatePath, opts.lmPath, opts.lmWeight,
+    --        opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
+    --    -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
+    --    sampler:generateBatch(opts.dataPath, opts.outPath)
 
     local att_file = opts.outPath .. '.att.t7'
     local unk_rep_file = opts.outPath .. '.unk.rep.txt'
