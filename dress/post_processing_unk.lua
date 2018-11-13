@@ -106,7 +106,9 @@ function PostPro.recoverNER(src_file, dst_file, map_file, out_dst_file)
         local dwords = dst_line:splitc(' \t')
         local snes = {}
         for _, wd in ipairs(swords) do
-            if ne_map[wd] then snes[wd] = true end
+            if ne_map ~= nil then
+                if ne_map[wd] then snes[wd] = true end
+            end
         end
 
         local match_cnt, tot_cnt = 0, 0

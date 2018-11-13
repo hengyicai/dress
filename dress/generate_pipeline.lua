@@ -27,7 +27,7 @@ local function main()
 
     local opts = cmd:parse(arg)
 
---    -- generate raw output by sampling (the output without UNK replacement and NER recovery)
+    --    -- generate raw output by sampling (the output without UNK replacement and NER recovery)
     --    local sampler = EncDecASampler(opts.modelPath, opts.modelStatePath, opts.lmPath, opts.lmWeight,
     --        opts.lexTransPath, opts.lexTransWeight, opts.lexSelfDiscount)
     --    -- local sampler = EncDecASampler(opts.modelPath, opts.lmPath)
